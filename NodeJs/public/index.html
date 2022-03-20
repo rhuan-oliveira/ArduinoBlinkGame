@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Game developed for presentation at Arduino Day Fortaleza 2022">
+  <title>BlinkGame</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="root">
+
+    <h1>Bem-Vindo!</h1>
+    <div id="lightBulb">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 353.8751 523.5049"
+        data-name="Layer 1">
+        <path
+          d="M47.899 145.411a4.98 4.98 0 0 1-3.286-1.233L1.674 106.697a5 5 0 0 1 6.576-7.533l42.939 37.481a5 5 0 0 1-3.29 8.767z"
+          data-name="Path 2548" style="fill:#e4e4e4" />
+        <path
+          d="M305.9771 145.411a5 5 0 0 1-3.29-8.767l42.938-37.484a5 5 0 0 1 6.576 7.533l-42.939 37.481a4.98 4.98 0 0 1-3.285 1.237z"
+          data-name="Path 2549" style="fill:#e4e4e4" />
+        <path id="light"
+          d="M308.748 263.2695c0 38.64-13.5 71.63-39.19 96.18-18.23 17.43-46.31 41.86-46.31 67.69v21.37h-85.5v-21.37c0-26.1-28.19-50.58-46.31-67.69-25.11-23.69-39.19-58.92-39.19-96.18v-.79a128.2506 128.2506 0 0 1 256.5.79z"
+          style="fill:#6c63ff" transform="translate(-6)" />
+        <path
+          d="M223.247 451.51a3 3 0 0 1-3-3v-21.374c0-25.125 24.779-48.58 42.873-65.706 1.5-1.422 2.961-2.8 4.363-4.145 25.029-23.928 38.259-56.437 38.259-94.014 0-70.229-55.013-125.243-125.242-125.243h-.354A125.03 125.03 0 0 0 55.257 262.566v.7c0 36.8 13.939 71.063 38.245 94.007 1.231 1.163 2.51 2.36 3.823 3.589 18.327 17.159 43.427 40.658 43.427 66.275v21.373a3 3 0 0 1-6 0v-21.374c0-23.015-24-45.486-41.528-61.9q-1.9784-1.851-3.841-3.605c-25.5-24.072-40.126-59.924-40.126-98.364v-.72c.2-72.045 58.885-130.523 130.88-130.523h.371a130.557 130.557 0 0 1 131.2342 129.8764q.004.6852-.0001 1.3706c0 39.255-13.871 73.264-40.112 98.351-1.409 1.347-2.876 2.736-4.386 4.165-17.3 16.377-41 38.806-41 61.349v21.374a3 3 0 0 1-3 3z"
+          data-name="Path 2546" style="fill:#3f3d56" transform="translate(-6)" />
+        <path d="M208.999 490.005h-57a5 5 0 1 1 0-10h57a5 5 0 0 1 0 10z" data-name="Path 2547"
+          style="fill:#3f3d56;fill-opacity:1" transform="translate(-6)" />
+        <path
+          d="M186.628 523.5049h-12.2671a23.4466 23.4466 0 0 1-12.0941-3.3506 2.7935 2.7935 0 0 1-1.2683-3.2144 2.8865 2.8865 0 0 1 2.8016-2.142h33.389a2.8866 2.8866 0 0 1 2.8017 2.142 2.7934 2.7934 0 0 1-1.2686 3.2144 23.445 23.445 0 0 1-12.0942 3.3506zM209.0088 505.7988l-57.338-.006-.1777-.3809a4.726 4.726 0 0 1 .8998-4.058 4.8556 4.8556 0 0 1 3.8229-1.8487h48.5577a4.855 4.855 0 0 1 3.8232 1.8491 4.698 4.698 0 0 1 .911 4.0073l-.0902.3863z"
+          style="fill:#3f3d56" transform="translate(-6)" />
+        <path d="M223.247 472.26h-85.5a5 5 0 0 1 0-10h85.5a5 5 0 0 1 0 10z" data-name="Path 2550"
+          style="fill:#3f3d56;fill-opacity:1" transform="translate(-6)" />
+        <path
+          d="m178.398 341.6395-17.78 106.87h-10.15l18.06-108.51a5.0027 5.0027 0 0 1 9.87 1.64zM212.568 448.5095h-10.15l-17.78-106.87a5.0027 5.0027 0 0 1 9.87-1.64z"
+          style="fill:#e6e6e6" transform="translate(-6)" />
+        <path d="M148.0026 338.0695a5 5 0 0 1 5-5h54.993a5 5 0 0 1 0 10h-54.993a5 5 0 0 1-5-5z" data-name="Path 2551"
+          style="fill:#e6e6e6" transform="translate(-6)" />
+        <path d="M180.499 95.5a5 5 0 0 1-5-5V5a5 5 0 0 1 10 0v85.5a5 5 0 0 1-5 5z" data-name="Path 2553"
+          style="fill:#e4e4e4" />
+      </svg>
+    </div>
+    <button class="click-btn" aria-label="Blink the light">
+      <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 1024 1024">
+        <path fill="currentColor"
+          d="M705.6 124.9a8 8 0 0 0-11.6 7.2v64.2c0 5.5 2.9 10.6 7.5 13.6a352.2 352.2 0 0 1 62.2 49.8c32.7 32.8 58.4 70.9 76.3 113.3a355 355 0 0 1 27.9 138.7c0 48.1-9.4 94.8-27.9 138.7a355.92 355.92 0 0 1-76.3 113.3a353.06 353.06 0 0 1-113.2 76.4c-43.8 18.6-90.5 28-138.5 28s-94.7-9.4-138.5-28a353.06 353.06 0 0 1-113.2-76.4A355.92 355.92 0 0 1 184 650.4a355 355 0 0 1-27.9-138.7c0-48.1 9.4-94.8 27.9-138.7c17.9-42.4 43.6-80.5 76.3-113.3c19-19 39.8-35.6 62.2-49.8c4.7-2.9 7.5-8.1 7.5-13.6V132c0-6-6.3-9.8-11.6-7.2C178.5 195.2 82 339.3 80 506.3C77.2 745.1 272.5 943.5 511.2 944c239 .5 432.8-193.3 432.8-432.4c0-169.2-97-315.7-238.4-386.7zM480 560h64c4.4 0 8-3.6 8-8V88c0-4.4-3.6-8-8-8h-64c-4.4 0-8 3.6-8 8v464c0 4.4 3.6 8 8 8z" />
+      </svg>
+    </button>
+    <div id="gameStatus">
+      <p>Jogador: <strong>BlinkSilva</strong></p>
+      <p>Blinks: <strong>1</strong></p>
+      <p>Colocação: <strong>1º</strong></p>
+    </div>
+  </div>
+  <script>
+    var animateButton = function (e) {
+      e.preventDefault; // reset animation
+      e.target.classList.remove('animate');
+      e.target.classList.add('animate');
+      setTimeout(function () {
+        e.target.classList.remove('animate');
+      }, 200);
+    };
+
+    var bubblyButtons = document.getElementsByClassName("click-btn");
+    for (var i = 0; i < bubblyButtons.length; i++) {
+      bubblyButtons[i].addEventListener('click', animateButton, false);
+    }
+  </script>
+</body>
+
+</html>
