@@ -57,6 +57,15 @@
       <p>Colocação: <strong>1º</strong></p>
     </div>
   </div>
+  <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+  <script>
+    var socket = io();
+    const button = document.getElementsByClassName("click-btn");
+    button[0].addEventListener('click', function(e){
+      console.log('teste')
+      socket.emit('click', 'teste');
+    }, false)
+  </script>
   <script>
     var animateButton = function (e) {
       e.preventDefault; // reset animation
