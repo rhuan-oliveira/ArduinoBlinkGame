@@ -1,4 +1,4 @@
-import { Server, Socket } from "socket.io";
+import { Server } from "socket.io";
 import {Server as HttpServer} from 'http';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -16,6 +16,10 @@ interface game {
 export default (server: HttpServer) => {
   const game = <game>{players: {}, status: 'waiting'}
   const io = new Server(server)
+
+  io.of('/arduino').on('connection', ()=>{
+    console.log('Arduino connected')
+  })
 
   io.on('connection', (socket) => {
     socket.on('join-game', (data)=>{
@@ -36,6 +40,7 @@ export default (server: HttpServer) => {
       player.score += 1
       socket.emit('valid-click', player.score);
       winnerEmit();
+      io.of('/arduino').emit('led:toggle');
     })
   });
 
