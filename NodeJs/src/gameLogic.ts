@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 interface game {
   players: {
     [tokenId: string] : {
+      ranking: number,
       username: string,
       score: number,
       socketId: string
@@ -21,11 +22,15 @@ export default (server: HttpServer) => {
     console.log('Arduino connected')
   })
 
+  io.of('/admin').on('connection', ()=>{
+    console.log('Admin connected')
+  })
+
   io.on('connection', (socket) => {
     socket.on('join-game', (data)=>{
       const username = randomUsername();
       const playerToken = uuidv4();
-      game.players[playerToken] = {username, score: 0, socketId: socket.id}
+      game.players[playerToken] = {ranking: 0,username, score: 0, socketId: socket.id}
       socket.emit('joined-game', {playerToken, username, gameStatus: game.status})
     })
     socket.on('player-click', (data)=>{
@@ -41,12 +46,13 @@ export default (server: HttpServer) => {
       socket.emit('valid-click', player.score);
       winnerEmit();
       io.of('/arduino').emit('led:toggle');
+      updateRanking();
     })
   });
 
   async function winnerEmit() {
     var players = Object.keys(game.players)
-    var player = players.find(key => game.players[key].score >= 20);
+    var player = players.find(key => game.players[key].score >= 255);
     if (player) {
       io.emit('winner-found', 'O jogo acabou');
       io.to(game.players[player].socketId).emit('you-win');
@@ -63,5 +69,12 @@ export default (server: HttpServer) => {
     const rC = Math.floor(Math.random()*c.length);
     const username = "ARDUINO_" + a[rA] + '_' + b[rB] + c[rC];
     return username
+  }
+
+  function updateRanking(){
+    const players = Object.values(game.players)
+    players.sort((a,b) => (a.score > b.score) ? -1 : ((b.score > a.score) ? 1 : 0))
+    const ranking = players.map((obj, i) => ({...obj, ranking: i + 1}))
+    io.of('/admin').emit('ranking-data', ranking);
   }
 }
