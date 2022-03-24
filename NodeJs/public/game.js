@@ -7,8 +7,13 @@ const player = {
   score: 0
 }
 
+var gameStatus = 'waiting'
+
 const button = document.getElementById("blink-btn");
 button.addEventListener('click', function (e) {
+  if (gameStatus !== 'ready') {
+    return;
+  }
   socket.emit('player-click', player);
 }, false)
 
@@ -18,8 +23,13 @@ socket.on('joined-game', (data)=>{
   player.playerToken = data.playerToken
   player.username = data.username
   player.score = 0
+  gameStatus = data.gameStatus
   document.getElementById("username").innerHTML = data.username;
   document.getElementById("playerToken").innerHTML = data.playerToken;
+})
+
+socket.on('game-status', (data) => {
+  gameStatus = data;
 })
 
 
@@ -39,11 +49,10 @@ socket.on('invalid-player', ()=>{
 })
 
 socket.on('winner-found', (data)=>{
-  console.log('teste')
   button.disabled = true;
   button.removeEventListener('click', ()=>{});
 })
 
 socket.on('you-win', ()=>{
-  alert('WIN THE GAME')
+  alert('VOÇÊ GANHOU')
 })

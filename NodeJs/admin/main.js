@@ -39,3 +39,9 @@ socket.on('ranking-data', (data) => {
     })
   }) 
 })
+
+const button = document.getElementById("start-btn");
+button.addEventListener('click', function (e) {
+  const startCode = prompt("Insert the code");
+  socket.emit('start-game', startCode);
+}, false)

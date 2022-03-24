@@ -14,7 +14,7 @@ interface game {
   status: 'ready' | 'done' | 'waiting';
 }
 
-export default (server: HttpServer) => {
+export default async (server: HttpServer) => {
   const game = <game>{players: {}, status: 'waiting'}
   const io = new Server(server)
 
@@ -22,8 +22,15 @@ export default (server: HttpServer) => {
     console.log('Arduino connected')
   })
 
-  io.of('/admin').on('connection', ()=>{
+  io.of('/admin').on('connection', (socket)=>{
     console.log('Admin connected')
+    socket.on('start-game', (data)=>{
+      if (data !== '8af80a2w9ajdwj') {
+        return;
+      }
+      game.status = 'ready';
+      io.emit('game-status', game.status)
+    })
   })
 
   io.on('connection', (socket) => {
@@ -32,10 +39,12 @@ export default (server: HttpServer) => {
       const playerToken = uuidv4();
       game.players[playerToken] = {ranking: 0,username, score: 0, socketId: socket.id}
       socket.emit('joined-game', {playerToken, username, gameStatus: game.status})
+      updateRanking();
     })
+
     socket.on('player-click', (data)=>{
       const player = game.players[data.playerToken]
-      if(game.status === 'done'){
+      if(game.status !== 'ready'){
         return;
       }
       if (!player) {
@@ -45,16 +54,16 @@ export default (server: HttpServer) => {
       player.score += 1
       socket.emit('valid-click', player.score);
       winnerEmit();
-      io.of('/arduino').emit('led:toggle');
       updateRanking();
     })
   });
 
   async function winnerEmit() {
     var players = Object.keys(game.players)
-    var player = players.find(key => game.players[key].score >= 255);
+    var player = players.find(key => game.players[key].score >= 250);
     if (player) {
       io.emit('winner-found', 'O jogo acabou');
+      console.log(player);
       io.to(game.players[player].socketId).emit('you-win');
       game.status = 'done'
     }
