@@ -9,7 +9,7 @@ tabl.setAttribute('border', '1px solid');
 tabl.appendChild(tHead);
 tabl.appendChild(tBody);
 
-var fieldTitles = ["Ranking", "Player", "Score", "Email"]
+var fieldTitles = ["Ranking", "Jogador", "Score"]
 
 var tHeadRow = document.createElement('tr');
 tHead.appendChild(tHeadRow);
@@ -39,13 +39,3 @@ socket.on('ranking-data', (data) => {
     })
   }) 
 })
-// for(var i = 0; i < users.length; i++) {
-//   var tRow = document.createElement('tr');
-//   tBody.appendChild(tRow);
-
-//   fields.forEach(function (field) {
-//     var tCol = document.createElement('td');
-//     tCol.innerHTML = users[i][field];
-//     tRow.appendChild(tCol);
-//   })
-// } 

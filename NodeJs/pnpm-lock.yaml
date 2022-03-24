@@ -6,6 +6,7 @@ specifiers:
   '@types/uuid': ^8.3.4
   express: ^4.17.3
   johnny-five: ^2.1.0
+  node-pixel: ^0.11.0
   socket.io: ^4.4.1
   socket.io-client: ^4.4.1
   ts-node-dev: ^1.1.8
@@ -15,6 +16,7 @@ specifiers:
 dependencies:
   express: 4.17.3
   johnny-five: 2.1.0
+  node-pixel: 0.11.0_johnny-five@2.1.0
   socket.io: 4.4.1
   socket.io-client: 4.4.1
   uuid: 8.3.2
@@ -393,6 +395,13 @@ packages:
 
   /color-name/1.1.3:
     resolution: {integrity: sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=}
+    dev: false
+
+  /color-string/1.9.0:
+    resolution: {integrity: sha512-9Mrz2AQLefkH1UvASKj6v6hj/7eWgjnT/cVsR8CumieLoT+g900exWeNogqtweI8dxloXN9BDQTYro1oWu/5CQ==}
+    dependencies:
+      color-name: 1.1.3
+      simple-swizzle: 0.2.2
     dev: false
 
   /component-emitter/1.3.0:
@@ -800,6 +809,10 @@ packages:
     engines: {node: '>= 0.10'}
     dev: false
 
+  /is-arrayish/0.3.2:
+    resolution: {integrity: sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==}
+    dev: false
+
   /is-binary-path/2.1.0:
     resolution: {integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==}
     engines: {node: '>=8'}
@@ -967,6 +980,16 @@ packages:
       semver: 5.7.1
     dev: false
     optional: true
+
+  /node-pixel/0.11.0_johnny-five@2.1.0:
+    resolution: {integrity: sha512-nVByJlbqh5rgCbjUXibAm5Z8H/+nqejPUWlF0pMX+z6CqSeHD4QOJ97JqlYY1DoQrRcWtWDizS6iOhGI2Zqgqg==}
+    peerDependencies:
+      firmata: ^0.19.1
+      johnny-five: ^2.0.0
+    dependencies:
+      color-string: 1.9.0
+      johnny-five: 2.1.0
+    dev: false
 
   /noop-logger/0.1.1:
     resolution: {integrity: sha1-lKKxYzxPExdVMAfYlm/Q6EG2pMI=}
@@ -1258,6 +1281,12 @@ packages:
       simple-concat: 1.0.1
     dev: false
     optional: true
+
+  /simple-swizzle/0.2.2:
+    resolution: {integrity: sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=}
+    dependencies:
+      is-arrayish: 0.3.2
+    dev: false
 
   /socket.io-adapter/2.3.3:
     resolution: {integrity: sha512-Qd/iwn3VskrpNO60BeRyCyr8ZWw9CPZyitW4AQwmRZ8zCiyDiL+znRnWX6tDHXnWn1sJrM1+b6Mn6wEDJJ4aYQ==}
