@@ -15,7 +15,7 @@ var tHeadRow = document.createElement('tr');
 tHead.appendChild(tHeadRow);
 
 fieldTitles.forEach(function (field) {
-     var tCol = document.createElement('td');
+     var tCol = document.createElement('th');
      tCol.innerHTML = field;
      tHeadRow.appendChild(tCol);
    })
