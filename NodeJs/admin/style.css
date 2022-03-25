@@ -123,6 +123,7 @@ a {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
+
 .flipper:target {
   -moz-transform: rotateX(90deg);
   -webkit-transform: rotateX(90deg);
@@ -144,6 +145,7 @@ a {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
+
 .front-face:before, .back-face:before {
   font-size: 30px;
   position: absolute;
@@ -163,6 +165,7 @@ a {
   -webkit-transform: rotateX(0deg) translateZ(2.25em);
   transform: rotateX(0deg) translateZ(2.25em);
 }
+
 .front-face:before {
   background-size: 100%;
   background-image: -moz-linear-gradient(45deg, #ce033e 0%, #eb1f56 50%, #f91858 50%, #fc2161);
@@ -178,6 +181,7 @@ a {
   -webkit-transform: rotateX(-90deg) translateZ(2.25em);
   transform: rotateX(-90deg) translateZ(2.25em);
 }
+
 .back-face:before {
   background-size: 100%;
   background-image: -moz-linear-gradient(45deg, #53842e 0%, #76bc42 50%, #7dbd4c 50%, #77bd42);

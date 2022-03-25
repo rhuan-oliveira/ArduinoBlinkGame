@@ -6,7 +6,9 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd --respawn src/index.ts"
+    "build": "tsc",
+    "dev": "tsnd --respawn src/index.ts",
+    "start": "node build/index.js & node build/arduino.js"
   },
   "dependencies": {
     "express": "^4.17.3",
