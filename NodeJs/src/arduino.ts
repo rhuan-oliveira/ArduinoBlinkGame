@@ -24,6 +24,7 @@ board.on("ready", function () {
   });
 
   strip.on("ready", function () {
+    strip.off();
     console.log("Strip ready, let's go");
     socket.on('update-score', (score) => {
       if (score < 250) {
@@ -39,7 +40,7 @@ board.on("ready", function () {
     for (var i = 0; i < strip.length; i++) {
       showColor = colorWheel((i * 256 / strip.length) & 255);
       strip.pixel(i).color(showColor);
-      if (i === Math.floor(((score * stripPixels-1) / maxScore))) {
+      if (i === Math.floor(((score * (stripPixels-1)) / maxScore))) {
         break;
       }
     }
