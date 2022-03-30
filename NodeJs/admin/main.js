@@ -1,4 +1,4 @@
-import { io } from 'http://localhost:3000/socket.io/socket.io.esm.min.js'
+import { io } from '/socket.io/socket.io.esm.min.js'
 const socket = io('/admin');
 
 const tabl = document.getElementById('mainTable');

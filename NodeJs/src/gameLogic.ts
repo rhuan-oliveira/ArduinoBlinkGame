@@ -17,10 +17,10 @@ interface game {
 export default async (server: HttpServer) => {
   const game = <game>{ players: {}, status: 'waiting' };
   const io = new Server(server);
-  const adminPass = '8af80a2w9ajdwj';
-  const maximumScore = 250;
-  const initialScore = 0;
-  const scoreIncrease = 1;
+  const adminPass = process.env.ADMIN_KEY;
+  const maximumScore = Number(process.env.MAXIMUM_SCORE) || 250;
+  const initialScore = Number(process.env.INITIAL_SCORE) || 0;
+  const scoreIncrease = Number(process.env.SCORE_INCREASE_BY || 1);
 
   io.of('/arduino').on('connection', () => {
     console.log('Arduino connected');

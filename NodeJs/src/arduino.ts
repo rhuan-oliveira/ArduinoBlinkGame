@@ -3,12 +3,12 @@ import { Board } from 'johnny-five';
 import pixel from "node-pixel";
 
 var board = new Board({ repl: false });
-const socket = io('http://localhost:3000/arduino');
+const socket = io(process.env.APP_URL + '/arduino' || 'http://localhost:3000/arduino');
 
-const stripPixels = 25; // number of pixels in the strip.
-const dataPin = 6; // data pin of the strip.
-const maxScore = 250; // maximum score value.
-const rainbowDelay = 20; // delay to change pixel rainbow color (higher value == faster change).
+const stripPixels = Number(process.env.STRIP_PIXELS) || 25; // number of pixels in the strip.
+const dataPin = process.env.DATA_PIN || 6; // data pin of the strip.
+const maxScore = Number(process.env.MAXIMUM_SCORE) || 250; // maximum score value.
+const rainbowDelay = Number(process.env.RAINBOW_DELAY) || 20; // delay to change pixel rainbow color (higher value == faster change).
 
 board.on("ready", function () {
 
@@ -35,10 +35,9 @@ board.on("ready", function () {
     })
   });
 
-  function staticRainbow(score) {
-    var showColor;
+  function staticRainbow(score: number) {
     for (var i = 0; i < strip.length; i++) {
-      showColor = colorWheel((i * 256 / strip.length) & 255);
+      const showColor = colorWheel((i * 256 / strip.length) & 255);
       strip.pixel(i).color(showColor);
       if (i === Math.floor(((score * (stripPixels-1)) / maxScore))) {
         break;
@@ -47,16 +46,15 @@ board.on("ready", function () {
     strip.show();
   }
 
-  function dynamicRainbow(delay) {
-    var showColor;
+  function dynamicRainbow(delay: number) {
     var cwi = 0; // colour wheel index (current position on colour wheel)
-    var foo = setInterval(function () {
+    setInterval(function () {
       if (++cwi > 255) {
         cwi = 0;
       }
 
       for (var i = 0; i < strip.length; i++) {
-        showColor = colorWheel((cwi + i) & 255);
+        const showColor = colorWheel((cwi + i) & 255);
         strip.pixel(i).color(showColor);
       }
       strip.show();
@@ -65,7 +63,7 @@ board.on("ready", function () {
 
   // Input a value 0 to 255 to get a color value.
   // The colours are a transition r - g - b - back to r.
-  function colorWheel(WheelPos) {
+  function colorWheel(WheelPos: number) : string {
     var r, g, b;
     WheelPos = 255 - WheelPos;
 
