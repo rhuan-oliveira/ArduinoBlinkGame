@@ -1,4 +1,4 @@
-import {io} from '/socket.io/socket.io.esm.min.js';
+import {io} from 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.esm.min.js';
 
 var socket = io();
 const player = {
