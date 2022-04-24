@@ -57,20 +57,7 @@
       <p>TOKEN: <strong id="playerToken"></strong></p>
     </div>
   </div>
-  <script type="module" src="./game.js" async></script>
-  <script>
-    const animateButton = function (e) {
-      e.preventDefault; // reset animation
-      e.target.classList.remove('animate');
-      e.target.classList.add('animate');
-      setTimeout(function () {
-        e.target.classList.remove('animate');
-      }, 200);
-    };
-
-    const blinkButton = document.getElementById("blink-btn");
-    blinkButton.addEventListener('click', animateButton, false);
-  </script>
+  <script type="module" src="./game.ts" async></script>
 </body>
 
 </html>

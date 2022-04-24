@@ -19,9 +19,9 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
-      - ./:/www/data
+      - ./dist:/www/data/public
       - ./config/nginx/:/etc/nginx/conf.d/
     networks:
       - app-network
