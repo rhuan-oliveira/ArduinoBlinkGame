@@ -1,4 +1,5 @@
 import {io} from 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.esm.min.js';
+import './style.css';
 
 var socket = io();
 const player = {
